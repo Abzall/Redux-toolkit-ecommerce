@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../store/slices/productSlice";
+import { useParams } from "react-router-dom";
 
 const Hero = () => {
   const list = useSelector((state) => state.products.list);
+  const {categoryId } = useParams()
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getProducts());
-  });
+    dispatch(getProducts(categoryId));
+  }, [dispatch, categoryId]);
 
   return (
     <section className="w-full relative">

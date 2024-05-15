@@ -1,24 +1,26 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../store/slices/categoriesSlice";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
- 
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getCategories())
-    }, [dispatch])
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
 
-    const list = useSelector((state) => state.categories.list)
-    return (
+  const list = useSelector((state) => state.categories.list);
+  return (
     <div className="w-[300px] bg-slate-700 p-3">
       <h3>Categories</h3>
-      {list.map(({id, name}) => (
-        <ul key={id}>
-            <li>{name}</li>
-        </ul>
-      ))}
+      <ul>
+        {list.map(({ id, name }) => (
+          <li key={id}>
+            <NavLink to={`categories/${id}`}>{name}</NavLink>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

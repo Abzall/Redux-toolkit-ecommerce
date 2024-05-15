@@ -4,9 +4,9 @@ import axios from "axios"
 
 export const getProducts = createAsyncThunk(
     'products/getProducts',
-    async (_, thunkApi) => {
+    async (categoryId, thunkApi) => {
         try {
-            const res = await axios.get('https://api.escuelajs.co/api/v1/products')
+            const res = await axios.get(`https://api.escuelajs.co/api/v1/products?categoryId=${categoryId}`)
             return res.data
         } catch (err) {
             return thunkApi.rejectWithValue(err)
