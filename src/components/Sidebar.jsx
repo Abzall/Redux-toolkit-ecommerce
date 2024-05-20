@@ -13,14 +13,16 @@ const Sidebar = () => {
   const list = useSelector((state) => state.categories.list);
   return (
     <div className="w-[300px] bg-slate-700 p-3">
-      <h3>Categories</h3>
-      <ul>
-        {list.map(({ id, name }) => (
-          <li key={id}>
-            <NavLink to={`categories/${id}`}>{name}</NavLink>
-          </li>
-        ))}
-      </ul>
+      <h3>Navigation</h3>
+      <nav>
+        <ul className="gap-2 mt-5">
+          <li>About us</li>
+          <li>Categories</li>
+          <li>Products</li>
+          <li>Favorite</li>
+          <li>Contact us</li>
+        </ul>
+      </nav>
     </div>
   );
 };

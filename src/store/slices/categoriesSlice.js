@@ -3,16 +3,12 @@ import axios from "axios"
 
 
 export const getCategories = createAsyncThunk(
-    'categories/getCategories',
-    async (_, thunkApi) => {
-        try {
-            const res = await axios.get('https://api.escuelajs.co/api/v1/categories')
-            return res.data
-        } catch (err) {
-            return thunkApi.rejectWithValue(err)
-        }
+    "categories/getCategories",
+    async () => {
+      const response = await axios.get(`https://api.escuelajs.co/api/v1/categories`);
+      return response.data;
     }
-)
+  );
 
 const categoriesSlice = createSlice ({
     name: 'categories',
@@ -30,6 +26,8 @@ const categoriesSlice = createSlice ({
         })
         builder.addCase(getCategories.rejected, (state) => {
             state.isLoading = false
+            state.status = "failed";
+            state.error = action.error.message;
         })
     }
 })

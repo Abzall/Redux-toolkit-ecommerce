@@ -40,9 +40,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchProductsByCategory = createAsyncThunk(
-  "products/fetchByCategory",
-  async (categoryId) => {
+export const getProducts = createAsyncThunk(
+  "products/getProducts",
+  async () => {
     const response = await axios.get(`https://api.escuelajs.co/api/v1/products`);
     return response.data;
   }
@@ -58,14 +58,14 @@ const productsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchProductsByCategory.pending, (state) => {
+      .addCase(getProducts.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
+      .addCase(getProducts.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.list = action.payload;
       })
-      .addCase(fetchProductsByCategory.rejected, (state, action) => {
+      .addCase(getProducts.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });

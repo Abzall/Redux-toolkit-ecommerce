@@ -3,7 +3,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
 import Hero from "./components/Hero";
-import Products from "./components/Products";
 
 const App = () => {
   return (
@@ -12,7 +11,6 @@ const App = () => {
       <div className="flex gap-7">
         <Sidebar />
         <Hero />
-        {/* <Products/> */}
       </div>
       <Footer />
     </div>
