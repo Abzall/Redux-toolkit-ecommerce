@@ -5,6 +5,14 @@ import { SiRoamresearch } from "react-icons/si";
 import { IoIosBasket } from "react-icons/io";
 import { GrFavorite } from "react-icons/gr";
 
+const navigation = [
+  "About us",
+  "Categories",
+  "Products",
+  "Favorite",
+  "Contact us",
+];
+
 const Header = () => {
   return (
     <header className="w-full flex justify-between items-center h-20 bg-gray-800 text-gray-400">
@@ -17,18 +25,16 @@ const Header = () => {
       </div>
 
       <nav>
-        <ul className="flex justify-between items-center gap-2">
-          <li>About us</li>
-          <li>Categories</li>
-          <li>Products</li>
-          <li>Favorite</li>
-          <li>Contact us</li>
+        <ul className="flex justify-between items-center gap-5">
+          {navigation.map((item, index) => (
+            <li className="text-lg font-semibold cursor-pointer hover:text-gray-300" key={index}>{item}</li>
+          ))}
         </ul>
       </nav>
 
       <div className="flex items-center gap-3">
-        <GrFavorite size={25} />
-        <IoIosBasket size={25} />
+        <GrFavorite size={25}  className="font-semibold hover:text-gray-300 cursor-pointer"/>
+        <IoIosBasket size={25} className="font-semibold hover:text-gray-300 cursor-pointer"/>
       </div>
 
       <div className="flex items-center justify-between">

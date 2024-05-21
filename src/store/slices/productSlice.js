@@ -1,7 +1,6 @@
 // import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 // import axios from "axios"
 
-
 // export const getProducts = createAsyncThunk(
 //     'products/getProducts',
 //     async (categoryId, thunkApi) => {
@@ -36,14 +35,15 @@
 
 // export default productSlice.reducer
 
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getProducts = createAsyncThunk(
   "products/getProducts",
   async () => {
-    const response = await axios.get(`https://api.escuelajs.co/api/v1/products`);
+    const response = await axios.get(
+      `https://api.escuelajs.co/api/v1/products`
+    );
     return response.data;
   }
 );
@@ -52,24 +52,36 @@ const productsSlice = createSlice({
   name: "products",
   initialState: {
     list: [],
-    status: "idle",
+    filtered: [],
+    isLoading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    filterProductsByCategory: (state, action) => {
+        const selectedCategoryId = action.payload
+        state.filtered = state.list.filter((product) => product.category.id === selectedCategoryId)
+    },
+    showAllProducts: (state) => {
+      state.filtered = state.list
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getProducts.pending, (state) => {
-        state.status = "loading";
+        state.isLoading = true;
       })
       .addCase(getProducts.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.isLoading = false;
         state.list = action.payload;
+        state.filtered = state.list
       })
       .addCase(getProducts.rejected, (state, action) => {
-        state.status = "failed";
+        state.isLoading = false;
         state.error = action.error.message;
       });
   },
 });
+
+export const {filterProductsByCategory, showAllProducts} = productsSlice.actions
 
 export default productsSlice.reducer;

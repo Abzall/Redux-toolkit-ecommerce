@@ -6,7 +6,7 @@ import Hero from "./components/Hero";
 
 const App = () => {
   return (
-    <div className="font-bold uppercase p-5 bg-gray-800">
+    <div className="uppercase p-5 bg-gray-800">
       <Header />
       <div className="flex gap-7">
         <Sidebar />
