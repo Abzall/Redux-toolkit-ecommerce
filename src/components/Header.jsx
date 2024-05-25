@@ -31,7 +31,7 @@ const Header = () => {
           <img src="#" alt="logo" />
         </Link> */}
         <SiRoamresearch size={30} />
-        <h3>Development</h3>
+        <h3 className="text-lg font-bold">Development</h3>
       </div>
 
       <nav>
@@ -48,13 +48,13 @@ const Header = () => {
       </div>
 
       <div className="flex items-center justify-between">
-        <form className="flex w-[300px] relative items-center bg-gray-900 rounded-md h-7 px-2 py-3 gap-4">
+        <form className="flex w-[300px] relative items-center bg-gray-900 rounded-md h-10 px-2 py-3 gap-4">
           <div className="cursor-pointer">
-            <IoIosSearch size={20} />
+            <IoIosSearch size={25} />
           </div>
 
           <input
-            className="w-full text-gray-800 bg-none outline-none rounded-sm"
+            className="w-full text-gray-800 bg-none outline-none rounded-sm focus:border p-1"
             type="text"
             placeholder="Search products..."
             value={searchTerm}

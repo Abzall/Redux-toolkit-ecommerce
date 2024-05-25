@@ -28,7 +28,7 @@ const Sidebar = () => {
         <span className="text-gray-400 font-normal cursor-pointer hover:text-gray-300" onClick={() => dispatch(showAllProducts())}>All Products</span>
         {list.map(({ id, name }) => (
           <ul key={id}>
-            <li className="text-gray-400 font-normal cursor-pointer mb-1 hover:text-gray-300" onClick={() => handleCategoryClick(id)}>{name}</li>
+            <li className="text-gray-400 font-normal cursor-pointer mb-1 hover:text-gray-300 mt-1" onClick={() => handleCategoryClick(id)}>{name}</li>
           </ul>
         ))}
       </nav>
