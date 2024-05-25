@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { SiRoamresearch } from "react-icons/si";
 import { IoIosBasket } from "react-icons/io";
 import { GrFavorite } from "react-icons/gr";
+import { useDispatch } from "react-redux";
+import { filterProductsByName } from "../store/slices/productSlice";
 
 const navigation = [
   "About us",
@@ -14,6 +16,14 @@ const navigation = [
 ];
 
 const Header = () => {
+  const [searchTerm, setSearchTerm] = useState('')
+  const dispatch = useDispatch()
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase())
+    dispatch(filterProductsByName(searchTerm))
+  }
+
   return (
     <header className="w-full flex justify-between items-center h-20 bg-gray-800 text-gray-400">
       <div className="w-[300px] flex items-center gap-5">
@@ -46,6 +56,9 @@ const Header = () => {
           <input
             className="w-full text-gray-800 bg-none outline-none rounded-sm"
             type="text"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={handleSearchChange}
           />
         </form>
       </div>

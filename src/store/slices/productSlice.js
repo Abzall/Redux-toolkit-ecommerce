@@ -63,7 +63,14 @@ const productsSlice = createSlice({
     },
     showAllProducts: (state) => {
       state.filtered = state.list
-    }
+    },
+    filterProductsByName: (state, action) => {
+      const searchTerm = action.payload.toLowerCase();
+      state.filtered = state.list.filter((product) => {
+        const productName = product.title.toLowerCase();
+        return productName.includes(searchTerm);
+      });
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -82,6 +89,6 @@ const productsSlice = createSlice({
   },
 });
 
-export const {filterProductsByCategory, showAllProducts} = productsSlice.actions
+export const {filterProductsByCategory, showAllProducts, filterProductsByName} = productsSlice.actions
 
 export default productsSlice.reducer;
