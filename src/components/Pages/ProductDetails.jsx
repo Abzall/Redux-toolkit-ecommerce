@@ -8,20 +8,22 @@ const ProductDetails = () => {
     const [product, setProduct] = useState(null)
 
     useEffect(() => {
-        const selectedProduct = list.find((item) => item.id === id)
+        const selectedProduct = list.find((item) => item.id === parseInt(id))
         setProduct(selectedProduct)
     }, [product, id])
+
+    if(!product) {
+        return <div>Product not found</div>
+    } 
+    
   return (
+    
     <div>
         <h2>Product Details</h2>
-        {
-            list.map(({id, title, description}) => (
-                <div key={id}>
-                    <h3>{title}</h3>
-                    <p>{description}</p>
-                </div>
-            ))
-        }
+        <h2>{product.title}</h2>
+        <div>
+            <img src={product.images} alt="" />
+        </div>
     </div>
   )
 }
