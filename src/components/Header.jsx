@@ -16,35 +16,44 @@ const navigation = [
 ];
 
 const Header = () => {
-  const [searchTerm, setSearchTerm] = useState('')
-  const dispatch = useDispatch()
+  const [searchTerm, setSearchTerm] = useState("");
+  const dispatch = useDispatch();
 
   const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value.toLowerCase())
-    dispatch(filterProductsByName(searchTerm))
-  }
+    setSearchTerm(event.target.value.toLowerCase());
+    dispatch(filterProductsByName(searchTerm));
+  };
 
   return (
     <header className="w-full flex justify-between items-center h-20 bg-gray-800 text-gray-400">
-      <div className="w-[300px] flex items-center gap-5">
-        {/* <Link>
-          <img src="#" alt="logo" />
-        </Link> */}
-        <SiRoamresearch size={30} />
-        <h3 className="text-lg font-bold">Development</h3>
-      </div>
+      
+        <Link to='/' className="w-[300px] flex items-center gap-5">
+          <SiRoamresearch size={30} />
+          <h3 className="text-lg font-bold">Development</h3>
+        </Link>
 
       <nav>
         <ul className="flex justify-between items-center gap-5">
           {navigation.map((item, index) => (
-            <li className="text-lg font-semibold cursor-pointer hover:text-gray-300" key={index}>{item}</li>
+            <li
+              className="text-lg font-semibold cursor-pointer hover:text-gray-300"
+              key={index}
+            >
+              {item}
+            </li>
           ))}
         </ul>
       </nav>
 
       <div className="flex items-center gap-3">
-        <GrFavorite size={25}  className="font-semibold hover:text-gray-300 cursor-pointer"/>
-        <IoIosBasket size={25} className="font-semibold hover:text-gray-300 cursor-pointer"/>
+        <GrFavorite
+          size={25}
+          className="font-semibold hover:text-gray-300 cursor-pointer"
+        />
+        <IoIosBasket
+          size={25}
+          className="font-semibold hover:text-gray-300 cursor-pointer"
+        />
       </div>
 
       <div className="flex items-center justify-between">
