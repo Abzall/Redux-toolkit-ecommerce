@@ -26,9 +26,9 @@ const categoriesSlice = createSlice({
       state.isLoading = false;
       state.list = action.payload;
     });
-    builder.addCase(getCategories.rejected, (state) => {
+    builder.addCase(getCategories.rejected, (state, action) => {
       state.isLoading = false;
-      // state.error = error.message;
+      state.error = action.error.message;
     });
   },
 });
