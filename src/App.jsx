@@ -14,8 +14,9 @@ const App = () => {
     <div className="uppercase p-5 bg-gray-800">
       <Header />
       <div className="flex gap-7">
+        <Sidebar/>
         <Routes>
-          <Route path="/" element={<Home/>}/>
+          {/* <Route path="/" element={<Home/>}/> */}
           <Route path="/products/:id" element={<ProductDetails/>}/>
         </Routes>
       </div>

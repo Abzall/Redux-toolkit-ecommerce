@@ -5,7 +5,7 @@ import Hero from '../Hero'
 const Home = () => {
   return (
     <div className='flex gap-7'>
-        <Sidebar/>
+        {/* <Sidebar/> */}
         <Hero/>
     </div>
   )
