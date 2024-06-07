@@ -1,27 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
-import Hero from "./components/Hero";
-import { Route, Routes } from "react-router-dom";
-import Products from "./components/Products";
-import ProductDetails from "./components/Pages/ProductDetails";
-import Home from "./components/Pages/Home";
-
+import { Home, Cart, CategoryProducts, ProductSingle, Search } from "./pages";
+import { getCategories } from "./store/slices/categorySlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
+
   return (
-    <div className="uppercase p-5 bg-gray-800">
-      <Header />
-      <div className="flex gap-7">
-        <Sidebar/>
+    <>
+      <div className="uppercase bg-white">
+        <Header />
+        <Sidebar />
         <Routes>
-          {/* <Route path="/" element={<Home/>}/> */}
-          <Route path="/products/:id" element={<ProductDetails/>}/>
+          <Route path="/" element={<Home />} />
         </Routes>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+
+
+    </>
   );
 };
 
